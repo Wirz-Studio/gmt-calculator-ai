@@ -1,15 +1,11 @@
 import { GoogleGenAI, Chat } from "@google/genai";
 
-// Access the API key from environment variables.
-// This should be set in your deployment environment as API_KEY.
-const apiKey = process.env.API_KEY;
-
-if (!apiKey) {
+if (!process.env.API_KEY) {
   // This error will be thrown if the API_KEY environment variable is not set.
   throw new Error("API_KEY environment variable is not set. Please ensure it is configured in your deployment environment.");
 }
 
-const ai = new GoogleGenAI({ apiKey });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const chat: Chat = ai.chats.create({
   model: 'gemini-2.5-flash',
